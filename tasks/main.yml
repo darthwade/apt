@@ -39,3 +39,10 @@
     pkg: "{{item}}"
     state: present
   with_items: apt_default_packages
+
+- name: APT | Make sure the required repositories are installed
+  apt_repository:
+    repo: "{{ item }}"
+    update_cache: yes
+  with_items: apt_repositories
+  when: apt_repositories
